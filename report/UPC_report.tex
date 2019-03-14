@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt,twoside,english]{article}
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful  math packages
+\usepackage{amssymb,amsmath,amsthm}
+%% Useful  plot packages
+\usepackage{float}
+\usepackage{subfigure,color,colordvi,graphicx,xcolor}
+%% Useful  table and list packages
+\usepackage{array}
+\usepackage{enumerate}
+
+%% Fancy page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%% Set head and foot
+\renewcommand{\headrulewidth}{0pt} % no rule line
+\renewcommand{\footrulewidth}{1pt} % display rule line
+\setlength\headheight{20.0pt}
+\addtolength{\textheight}{-40.0pt}
+% \lhead{\\textbf{includegraphics}[scale=0.5]{Figures/relaxation1.png}}
+
+%% New commands
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+%% Short cuts for maths expression
+\DeclareMathOperator{\adj}{adj}
+% bold fase
+\newcommand{\bm}[1]{\text{\boldmath $#1$\unboldmath}}
+
+\begin{document}
+\title{Computational Structural Mechanics and dynamics}
+\author{EVERYBODY}
+\begin{titlepage}
+\center
+%% Institute information
+\includegraphics[width=0.8\linewidth]{Figures/UPC.pdf}\\[1cm]
+\textsc{\Large Escola Tècnica Superior d'Enginyers de Camins, Canals i Ports de Barcelona}\\[0.5cm]
+\textsc{\large MSc Computational Mechanics}\\[0.5cm]
+%% Course information
+\HRule \\[0.4cm]
+{ \Huge \bfseries Computational Structural Mechanics and dynamics}\\[0.3cm]
+%% Project name
+\HRule\\[0.4cm]
+{ \LARGE \bfseries GiD Asignment 1}\\[0.4cm]
+%% AUTHOR SECTION
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+% Raúl \textsc{Bravo}\\
+Shushu \textsc{Qin}\\
+
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:}\\
+Dr.\textsc{Narges Dialami}
+\end{flushright}
+\end{minipage}\\[2cm]
+\vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+\tableofcontents
+\newpage
+% \include{ex1/ex1}
+\section{Exercise 1: Thin plate under dead weight}
+\subsection{Problem statement}
+Analyze the thin plate shown in the figure, which is submitted to its self weight. Compare the obtained results with the solution that is obtained when refining the mesh.
+Use triangular elements with 3 and 6 nodes and quadrilaterals with 4, 8 and 9 nodes.
+\begin{figure}[H]
+
+\end{figure}
+
+
+
+
+\subsubsection*{Comparison of the results under different meshes}
+The results of the analysis with the different types of elements are shown in the table below.
+\begin{center}
+    \begin{tabular}{ | m{6em} | m{1cm}| m{1.5cm} |m{3.5cm} |m{1cm} |m{2cm} | } 
+    \hline
+        Element type & DOF& $\sigma_y$ in B[N/m2]&Displacement y in the side ED central point[m]& $\epsilon_{\sigma_y}$\%&$\epsilon_{Disp-Y}$\% \\ \hline
+        TRI 3 nodes& 1089& 246984.8& -2.30325e-6  & 1.8 &0.006  \\\hline
+        TRI 6 nodes& 1089& 247755.4& -2.30366e-6   & 1.9 &-0.305\\\hline
+        QUA 4 nodes& 1089& 247258.9& -2.30370e-6   & 1.9 & -0.105 \\\hline
+        QUA 8 nodes& 833 & 249777.9& -2.30372e-6   & 1.9 & -1.125 \\\hline
+        QUA 9 nodes& 1089& 249773.2& -2.30369e-6   & 1.9 &  -1.122 \\
+    \hline
+    \end{tabular}
+\end{center}
+
+
+\subsection{Conclusions}
+We observe that the quadratic elements converge faster than the linear elements. Likewise, we observe that the triangular elements with 3 nodes have a very low convergence speed. The quadrilateral elements show a better behavior than the triangular elements.
+All of the analyzed higher order (Quadratic) elements   show a better precision in the obtained results. This is due to the fact that the displacement field is not linear as there are uniform body forces in the whole geometry; there is not a simple tensile force as in the class example.\\
+From the table of results, one can observe that the solutions for stress with the finest meshes are quite similar among each other. However, for displacements, the linear triangular element is the one that shows a greater precision, which can be due to the fact that the the given solution (for comparison) was calculated numerically using this type of element with a very fine mesh because it does not make sense for this type of element to provide a more accurate result than higher order elements. Moreover, the convergence plot also shows that we have already achieved converged results with quadrilateral mesh with is different from the benchmark result.
+
+
+
+
+\end{document}

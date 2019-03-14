@@ -1,0 +1,10 @@
+.DS_store
+*.exe
+# /foo ignore the whole directory
+*.res
+*.log
+*.gz
+*.fdb_latexmk
+*.fls
+*.aux
+*.toc
